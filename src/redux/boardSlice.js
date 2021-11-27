@@ -18,6 +18,5 @@ export const boardSlice = createSlice({
     },
   },
 });
-export const { addLayers, setSelectedTool, clearBoard } =
-  boardSlice.actions;
+export const { addLayers, setSelectedTool, clearBoard } = boardSlice.actions;
 export default boardSlice.reducer;
