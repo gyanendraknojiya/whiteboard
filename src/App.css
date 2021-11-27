@@ -1,0 +1,14 @@
+.cursor-pen {
+  cursor: url('./assets/cursors/pencil.cur'), auto;
+}
+.cursor-eraser {
+  cursor: url('./assets/cursors/eraser.cur'), auto;
+}
+
+.crosshair {
+  cursor: crosshair;
+}
+
+.board-background {
+  background-image: url('./assets/images/worn-dots.png');
+}

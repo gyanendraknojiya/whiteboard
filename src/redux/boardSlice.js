@@ -1,19 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
-  lines: [],
+  layers: [],
   selectedTool: 'pen',
 };
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    addLines: (state, action) => {
-      state.lines = action.payload;
+    addLayers: (state, action) => {
+      state.layers = action.payload;
     },
     setSelectedTool: (state, action) => {
       state.selectedTool = action.payload;
     },
+    clearBoard: (state) => {
+      state.layers = [];
+    },
   },
 });
-export const { addLines, setSelectedTool } = boardSlice.actions;
+export const { addLayers, setSelectedTool, clearBoard } =
+  boardSlice.actions;
 export default boardSlice.reducer;

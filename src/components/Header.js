@@ -15,16 +15,17 @@ const Header = () => {
       setMode('light');
     }
   }
+  window.ondragstart = () => false;
   return (
     <>
-      <div className="fixed top-5 left-5 z-50">
-        <div className="bg-gray-100  shadow-inner rounded-lg dark:bg-gray-800 text-gray-800 dark:text-gray-50 font-bold py-2 px-4">
+      <div className="fixed top-5 left-5 z-50 pb-2 p-2  select-none">
+        <div className="border border-black dark:border-white bg-gray-100  shadow-inner rounded-lg dark:bg-gray-800 text-gray-800 dark:text-gray-50 font-bold py-2 px-4">
           Whiteboard
         </div>
       </div>
-      <div className="fixed top-5 right-5 ">
+      <div className="fixed top-5 right-5  select-none">
         <div
-          className="bg-gray-200 rounded-lg dark:bg-gray-800 text-gray-700 dark:text-gray-50 text-lg font-bold p-2 cursor-pointer"
+          className="border border-black dark:border-white bg-gray-200 rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-50 text-lg font-bold p-2 cursor-pointer"
           onClick={toggleTheme}
         >
           {mode && mode === 'dark' ? (
