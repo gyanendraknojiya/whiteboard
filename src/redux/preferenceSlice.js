@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   strokeColor: '#0ff',
   strokeWidth: 4,
+  backgroundImage: 'grids',
 };
 
 export const preferenceSlice = createSlice({
@@ -15,8 +16,12 @@ export const preferenceSlice = createSlice({
     setStrokeWidth: (state, action) => {
       state.strokeWidth = action.payload;
     },
+    setBackgroundImage: (state, action) => {
+      state.backgroundImage = action.payload;
+    },
   },
 });
 
-export const { setStrokeColor, setStrokeWidth } = preferenceSlice.actions;
+export const { setStrokeColor, setStrokeWidth, setBackgroundImage } =
+  preferenceSlice.actions;
 export default preferenceSlice.reducer;

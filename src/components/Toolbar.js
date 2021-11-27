@@ -4,12 +4,17 @@ import { useDispatch } from 'react-redux';
 import { clearBoard, setSelectedTool } from '../redux/boardSlice';
 
 import Popover from '@mui/material/Popover';
+import { setBackgroundImage } from '../redux/preferenceSlice';
 
 const Toolbar = () => {
   const [openBackgroundSelectPopover, setOpenBackgroundSelectPopover] =
     useState(false);
   const tools = ['pen', 'eraser', 'square', 'triangle', 'circle'];
+  const bgImages = ['grids', 'dots'];
   const selectedTool = useSelector((state) => state.boardReducer.selectedTool);
+
+  const { backgroundImage } = useSelector((state) => state.preferenceReducer);
+
   const dispatch = useDispatch();
 
   window.ondragstart = () => false;
@@ -46,7 +51,7 @@ const Toolbar = () => {
           }
         >
           <img
-            src="./icons/clear.png"
+            src="./icons/background.png"
             className="filter dark:invert"
             alt="clear"
             height={25}
@@ -54,7 +59,6 @@ const Toolbar = () => {
           />
 
           <Popover
-            className="z-50"
             anchorEl={openBackgroundSelectPopover}
             open={open}
             onClose={() => setOpenBackgroundSelectPopover(null)}
@@ -67,7 +71,36 @@ const Toolbar = () => {
               horizontal: 'left',
             }}
           >
-            The content of the Popover.
+            <div className="bg-white dark:bg-gray-900 py-2 text-yellow-600 dark:text-yellow-400 ">
+              <div className="text-center">Change Background</div>
+              <div className="flex gap-x-2 p-2 ">
+                {bgImages.map((item) => (
+                  <span
+                    key={item}
+                    title={item.toUpperCase()}
+                    className={`p-1 cursor-pointer my-2 rounded-lg overflow-hidden ${
+                      backgroundImage === item &&
+                      'shadow-inner border border-black dark:border-white'
+                    }`}
+                    onMouseDown={() => dispatch(setBackgroundImage(item))}
+                    style={{
+                      height: 50,
+                      width: 80,
+                    }}
+                  >
+                    <img
+                      src={`./images/${item}.png`}
+                      className="filter dark:invert object-cover"
+                      alt={item}
+                      style={{
+                        height: 180,
+                        width: 180,
+                      }}
+                    />
+                  </span>
+                ))}
+              </div>
+            </div>
           </Popover>
         </div>
         <div
@@ -76,7 +109,7 @@ const Toolbar = () => {
         >
           <img
             src="./icons/clear.png"
-            className="filter dark:invert"
+            className="filter dark:invert "
             alt="clear"
             height={25}
             width={25}

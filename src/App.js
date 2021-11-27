@@ -13,8 +13,9 @@ import PreferenceSelector from './components/PreferenceSelector';
 
 var App = () => {
   const isDrawing = React.useRef(false);
-  // const selectedTool = useSelector((state) => state.boardReducer.selectedTool);
   const { layers, selectedTool } = useSelector((state) => state.boardReducer);
+  const { backgroundImage } = useSelector((state) => state.preferenceReducer);
+
   const dispatch = useDispatch();
 
   const mouseDown = (e) => {
@@ -48,7 +49,10 @@ var App = () => {
         onMouseDown={mouseDown}
         onMousemove={mouseMove}
         onMouseup={mouseUp}
-        className={`${getCursor()} dark:bg-gray-900 board-background`}
+        style={{
+          backgroundImage: `url(./images/${backgroundImage}.png)`,
+        }}
+        className={`${getCursor()} dark:bg-gray-900`}
       >
         <Layer>
           {layers.map((layer, i) => (
@@ -76,7 +80,6 @@ var App = () => {
                   points={layer.points}
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
-                  lineCap="round"
                 />
               )}
               {layer.tool === 'triangle' && (
@@ -96,7 +99,6 @@ var App = () => {
                   closed
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
-                  lineCap="round"
                 />
               )}
             </>
