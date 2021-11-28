@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Layer, Line, Stage, Rect } from 'react-konva';
+import { Layer, Line, Stage, Rect, Circle } from 'react-konva';
 import Header from './components/Header';
 import Toolbar from './components/Toolbar';
 import {
@@ -104,6 +104,39 @@ var App = () => {
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
                 />
+              )}
+              {layer.tool === 'circle' && (
+                <>
+                  {console.log(
+                    Math.min(
+                      Math.abs(layer.points.y - layer.points.q),
+                      Math.abs(layer.points.x - layer.points.p)
+                    )
+                  )}
+                  <Circle
+                    key={i}
+                    x={
+                      layer.points.p +
+                      Math.min(
+                        layer.points.x - layer.points.p,
+                        layer.points.y - layer.points.q
+                      )/2
+                    }
+                    y={
+                      layer.points.q +
+                      Math.min(
+                        layer.points.x - layer.points.p,
+                        layer.points.y - layer.points.q
+                      )/2
+                    }
+                    radius={Math.min(
+                      Math.abs(layer.points.y - layer.points.q),
+                      Math.abs(layer.points.x - layer.points.p)
+                    )/2}
+                    stroke={layer.strokeColor}
+                    strokeWidth={layer.strokeWidth}
+                  />
+                </>
               )}
             </>
           ))}

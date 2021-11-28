@@ -63,11 +63,31 @@ export const handleMouseDown = (e, isDrawing, dispatch) => {
         ])
       );
       break;
+
+    case 'circle':
+      let initCircle = {
+        p: pos.x,
+        q: pos.y,
+        x: pos.x,
+        y: pos.y,
+        r: 0,
+      };
+      dispatch(
+        addLayers([
+          ...layers,
+          {
+            tool: selectedTool,
+            points: initCircle,
+            strokeColor,
+            strokeWidth,
+          },
+        ])
+      );
+      break;
   }
 };
 
 export const handleMouseMove = (e, isDrawing, dispatch) => {
-  // no drawing - skipping
   if (!isDrawing.current) {
     return;
   }
@@ -125,6 +145,22 @@ export const handleMouseMove = (e, isDrawing, dispatch) => {
       allLayers.splice(layers.length - 1, 1, lastLayer);
       dispatch(addLayers(allLayers.concat()));
 
+      break;
+    case 'circle':
+      let initCircle = {
+        x: point.x,
+        y: point.y,
+      };
+      lastLayer = {
+        ...lastLayer,
+        points: {
+          ...lastLayer.points,
+          ...initCircle,
+        },
+      };
+
+      allLayers.splice(layers.length - 1, 1, lastLayer);
+      dispatch(addLayers(allLayers.concat()));
       break;
   }
 };
