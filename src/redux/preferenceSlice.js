@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  strokeColor: '#0ff',
+  strokeColor: '#df0000',
   strokeWidth: 4,
   backgroundImage: 'grids',
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LayerActions from './LayerActions';
 
 const Header = () => {
   const [mode, setMode] = useState(localStorage.getItem('dark-mode'));
@@ -23,7 +24,8 @@ const Header = () => {
           Whiteboard
         </div>
       </div>
-      <div className="fixed top-5 right-2 md:right-5  select-none">
+      <div className="flex gap-x-4 fixed top-5 right-2 md:right-5  select-none">
+        <LayerActions />
         <div
           className="border border-black dark:border-white bg-gray-200 rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-50 text-lg font-bold p-2 cursor-pointer"
           onClick={toggleTheme}

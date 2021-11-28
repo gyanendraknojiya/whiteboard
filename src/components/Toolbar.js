@@ -82,7 +82,7 @@ const Toolbar = () => {
                     onMouseDown={() => dispatch(setBackgroundImage(item))}
                   >
                     <div
-                      className={`p-1 rounded-lg overflow-hidden  ${
+                      className={`p-1 rounded-lg overflow-hidden bg-white dark:bg-black  ${
                         backgroundImage === item &&
                         'shadow-inner border border-black dark:border-white'
                       }`}
@@ -97,8 +97,8 @@ const Toolbar = () => {
                           className="filter dark:invert object-cover"
                           alt={item}
                           style={{
-                            height: 180,
-                            width: 180,
+                            height: 200,
+                            width: 200,
                           }}
                         />
                       ) : (
