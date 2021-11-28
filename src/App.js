@@ -107,12 +107,6 @@ var App = () => {
               )}
               {layer.tool === 'circle' && (
                 <>
-                  {console.log(
-                    Math.min(
-                      Math.abs(layer.points.y - layer.points.q),
-                      Math.abs(layer.points.x - layer.points.p)
-                    )
-                  )}
                   <Circle
                     key={i}
                     x={
