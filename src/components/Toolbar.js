@@ -27,6 +27,7 @@ const Toolbar = () => {
         {tools.map((item) => (
           <div
             key={item}
+            title={item.toUpperCase()}
             className={`p-2 cursor-pointer my-2 rounded-lg  ${
               selectedTool === item &&
               'shadow-inner shadow bg-yellow-300 dark:bg-yellow-500'

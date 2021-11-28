@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import { Layer, Line, Stage, Rect, Circle } from 'react-konva';
 import Header from './components/Header';
@@ -10,10 +10,11 @@ import {
 } from './lib/boardEventHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import PreferenceSelector from './components/PreferenceSelector';
-import { addLayers } from './redux/boardSlice';
 
 var App = () => {
-  const isDrawing = React.useRef(false);
+  const isDrawing = useRef(false);
+  const stageRef = useRef(null);
+
   const { layers, selectedTool } = useSelector((state) => state.boardReducer);
   const { backgroundImage } = useSelector((state) => state.preferenceReducer);
 
@@ -44,36 +45,6 @@ var App = () => {
     }
   };
 
-  const handleDragStart = (e) => {
-    // console.log(selectedTool)
-    // if (selectedTool === 'drag') {
-    // const id = e.target.id();
-    // dispatch(
-    //   addLayers(
-    //     layers.map((layer) => {
-    //       return {
-    //         ...layer,
-    //         isDragging: layer.id === id,
-    //       };
-    //     })
-    //   )
-    // );
-    //   }
-  };
-  // const handleDragEnd = (e) => {
-  //   if (selectedTool !== 'drag') return;
-  //   dispatch(
-  //     addLayers(
-  //       layers.map((layer) => {
-  //         return {
-  //           ...layer,
-  //           isDragging: false,
-  //         };
-  //       })
-  //     )
-  //   );
-  // };
-
   return (
     <div>
       <Stage
@@ -90,6 +61,7 @@ var App = () => {
           backgroundImage: `url(./images/${backgroundImage}.png)`,
         }}
         className={`${getCursor()} dark:bg-gray-900`}
+        ref={stageRef}
       >
         <Layer>
           {layers.map((layer, i) => (
@@ -181,7 +153,7 @@ var App = () => {
           ))}
         </Layer>
       </Stage>
-      <Header />
+      <Header stageRef={stageRef} />
       <Toolbar />
       <PreferenceSelector />
     </div>

@@ -1,12 +1,11 @@
-import { Button, ButtonGroup } from '@mui/material';
 import React from 'react';
+import { Button, ButtonGroup } from '@mui/material';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleRedo, handleUndo } from '../redux/boardSlice';
 
-const LayerActions = () => {
-  const { layers, undoLayers, redoLayers } = useSelector(
-    (state) => state.boardReducer
-  );
+const LayerActions = ({ handleExport }) => {
+  const { layers, undoLayers } = useSelector((state) => state.boardReducer);
 
   const dispatch = useDispatch();
 
@@ -40,8 +39,15 @@ const LayerActions = () => {
           width={25}
         />
       </Button>
+      <Button onClick={handleExport} color="success" variant="contained">
+        <img src="./icons/folder.png" alt="clear" height={25} width={25} />
+      </Button>
     </ButtonGroup>
   );
+};
+
+LayerActions.propTypes = {
+  handleExport: PropTypes.func,
 };
 
 export default LayerActions;

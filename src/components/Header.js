@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import LayerActions from './LayerActions';
 
-const Header = () => {
+const Header = ({ stageRef }) => {
   const [mode, setMode] = useState(localStorage.getItem('dark-mode'));
 
   useEffect(() => {
@@ -17,6 +18,21 @@ const Header = () => {
     }
   }
   window.ondragstart = () => false;
+
+  function downloadURI(uri, name) {
+    var link = document.createElement('a');
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const handleExport = () => {
+    const uri = stageRef.current.toDataURL();
+    console.log(uri);
+    downloadURI(uri, 'stage.png');
+  };
   return (
     <>
       <div className="fixed top-5 left-2 md:left-5 z-50 pb-2  select-none">
@@ -25,7 +41,7 @@ const Header = () => {
         </div>
       </div>
       <div className="flex gap-x-4 fixed top-5 right-2 md:right-5  select-none">
-        <LayerActions />
+        <LayerActions handleExport={handleExport} />
         <div
           className="border border-black dark:border-white bg-gray-200 rounded-lg dark:bg-gray-700 text-gray-700 dark:text-gray-50 text-lg font-bold p-2 cursor-pointer"
           onClick={toggleTheme}
@@ -39,6 +55,10 @@ const Header = () => {
       </div>
     </>
   );
+};
+
+Header.propTypes = {
+  stageRef: PropTypes.any,
 };
 
 export default Header;
