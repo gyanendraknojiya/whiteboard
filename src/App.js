@@ -120,19 +120,23 @@ var App = () => {
                       Math.min(
                         layer.points.x - layer.points.p,
                         layer.points.y - layer.points.q
-                      )/2
+                      ) /
+                        2
                     }
                     y={
                       layer.points.q +
                       Math.min(
                         layer.points.x - layer.points.p,
                         layer.points.y - layer.points.q
-                      )/2
+                      ) /
+                        2
                     }
-                    radius={Math.min(
-                      Math.abs(layer.points.y - layer.points.q),
-                      Math.abs(layer.points.x - layer.points.p)
-                    )/2}
+                    radius={
+                      Math.min(
+                        Math.abs(layer.points.y - layer.points.q),
+                        Math.abs(layer.points.x - layer.points.p)
+                      ) / 2
+                    }
                     stroke={layer.strokeColor}
                     strokeWidth={layer.strokeWidth}
                   />
