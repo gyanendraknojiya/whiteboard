@@ -30,8 +30,9 @@ const Header = ({ stageRef }) => {
 
   const handleExport = () => {
     const uri = stageRef.current.toDataURL();
-    console.log(uri);
-    downloadURI(uri, 'stage.png');
+    const fileName =
+      'board.gyanendra.tech_' + new Date().getTime().toString() + '.png';
+    downloadURI(uri, fileName);
   };
   return (
     <>
