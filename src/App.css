@@ -5,6 +5,10 @@
   cursor: url('./assets/cursors/eraser.cur'), auto;
 }
 
+.drag {
+  cursor: move;
+}
+
 .crosshair {
   cursor: crosshair;
 }

@@ -10,6 +10,7 @@ import {
 } from './lib/boardEventHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import PreferenceSelector from './components/PreferenceSelector';
+import { addLayers } from './redux/boardSlice';
 
 var App = () => {
   const isDrawing = React.useRef(false);
@@ -36,6 +37,8 @@ var App = () => {
         return 'cursor-pen';
       case 'eraser':
         return 'cursor-eraser';
+      case 'drag':
+        return 'drag';
       default:
         return 'crosshair';
     }
@@ -64,6 +67,7 @@ var App = () => {
               {(layer.tool === 'pen' || layer.tool === 'eraser') && (
                 <Line
                   key={i}
+                  id={i}
                   points={layer.points}
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
@@ -72,11 +76,13 @@ var App = () => {
                   globalCompositeOperation={
                     layer.tool === 'eraser' ? 'destination-out' : 'source-over'
                   }
+                  draggable={selectedTool === 'drag'}
                 />
               )}
               {layer.tool === 'square' && (
                 <Rect
                   key={i}
+                  id={i}
                   x={layer.points.x}
                   y={layer.points.y}
                   width={layer.points.p - layer.points.x}
@@ -84,11 +90,13 @@ var App = () => {
                   points={layer.points}
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
+                  draggable={selectedTool === 'drag'}
                 />
               )}
               {layer.tool === 'triangle' && (
                 <Line
                   key={i}
+                  id={i}
                   x={layer.points.x1}
                   y={layer.points.y1}
                   points={[
@@ -109,6 +117,7 @@ var App = () => {
                 <>
                   <Circle
                     key={i}
+                    id={i}
                     x={
                       layer.points.p +
                       Math.min(

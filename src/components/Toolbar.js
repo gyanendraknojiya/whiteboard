@@ -9,7 +9,7 @@ import { setBackgroundImage } from '../redux/preferenceSlice';
 const Toolbar = () => {
   const [openBackgroundSelectPopover, setOpenBackgroundSelectPopover] =
     useState(false);
-  const tools = ['pen', 'eraser', 'square', 'triangle', 'circle'];
+  const tools = ['drag', 'pen', 'eraser', 'square', 'triangle', 'circle'];
   const bgImages = ['grids', 'dots'];
   const selectedTool = useSelector((state) => state.boardReducer.selectedTool);
 
