@@ -22,7 +22,7 @@ const Toolbar = () => {
   const open = Boolean(openBackgroundSelectPopover);
 
   return (
-    <div className="fixed left-5 top-24 z-50 pr-2 select-none">
+    <div className="fixed left-2 md:left-5 top-24 z-50 pr-2 select-none">
       <div className="border border-black dark:border-white shadow-inner bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 py-5 px-2 rounded-lg">
         {tools.map((item) => (
           <div

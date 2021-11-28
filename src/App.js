@@ -49,6 +49,10 @@ var App = () => {
         onMouseDown={mouseDown}
         onMousemove={mouseMove}
         onMouseup={mouseUp}
+        onTouchStart={mouseDown}
+        onTouchMove={mouseMove}
+        onTouchEnd={mouseUp}
+        onTouchCancel={mouseUp}
         style={{
           backgroundImage: `url(./images/${backgroundImage}.png)`,
         }}
