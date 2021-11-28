@@ -10,7 +10,7 @@ const Toolbar = () => {
   const [openBackgroundSelectPopover, setOpenBackgroundSelectPopover] =
     useState(false);
   const tools = ['drag', 'pen', 'eraser', 'square', 'triangle', 'circle'];
-  const bgImages = ['grids', 'dots'];
+  const bgImages = ['grids', 'dots', 'none'];
   const selectedTool = useSelector((state) => state.boardReducer.selectedTool);
 
   const { backgroundImage } = useSelector((state) => state.preferenceReducer);
@@ -71,32 +71,43 @@ const Toolbar = () => {
               horizontal: 'left',
             }}
           >
-            <div className="bg-white dark:bg-gray-900 py-2 text-yellow-600 dark:text-yellow-400 ">
+            <div className="bg-gray-100 dark:bg-gray-800 py-2 text-yellow-600 dark:text-yellow-400 ">
               <div className="text-center">Change Background</div>
               <div className="flex gap-x-2 p-2 ">
                 {bgImages.map((item) => (
                   <span
                     key={item}
                     title={item.toUpperCase()}
-                    className={`p-1 cursor-pointer my-2 rounded-lg overflow-hidden ${
-                      backgroundImage === item &&
-                      'shadow-inner border border-black dark:border-white'
-                    }`}
+                    className="cursor-pointer my-2"
                     onMouseDown={() => dispatch(setBackgroundImage(item))}
-                    style={{
-                      height: 50,
-                      width: 80,
-                    }}
                   >
-                    <img
-                      src={`./images/${item}.png`}
-                      className="filter dark:invert object-cover"
-                      alt={item}
+                    <div
+                      className={`p-1 rounded-lg overflow-hidden  ${
+                        backgroundImage === item &&
+                        'shadow-inner border border-black dark:border-white'
+                      }`}
                       style={{
-                        height: 180,
-                        width: 180,
+                        height: 50,
+                        width: 70,
                       }}
-                    />
+                    >
+                      {item !== 'none' ? (
+                        <img
+                          src={`./images/${item}.png`}
+                          className="filter dark:invert object-cover"
+                          alt={item}
+                          style={{
+                            height: 180,
+                            width: 180,
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-white dark:bg-gray-900" />
+                      )}
+                    </div>
+                    <div className="text-gray-700 dark:text-gray-200 text-xs text-center mt-2">
+                      {item.toUpperCase()}
+                    </div>
                   </span>
                 ))}
               </div>

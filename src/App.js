@@ -44,6 +44,36 @@ var App = () => {
     }
   };
 
+  const handleDragStart = (e) => {
+    // console.log(selectedTool)
+    // if (selectedTool === 'drag') {
+    // const id = e.target.id();
+    // dispatch(
+    //   addLayers(
+    //     layers.map((layer) => {
+    //       return {
+    //         ...layer,
+    //         isDragging: layer.id === id,
+    //       };
+    //     })
+    //   )
+    // );
+    //   }
+  };
+  // const handleDragEnd = (e) => {
+  //   if (selectedTool !== 'drag') return;
+  //   dispatch(
+  //     addLayers(
+  //       layers.map((layer) => {
+  //         return {
+  //           ...layer,
+  //           isDragging: false,
+  //         };
+  //       })
+  //     )
+  //   );
+  // };
+
   return (
     <div>
       <Stage
@@ -67,7 +97,7 @@ var App = () => {
               {(layer.tool === 'pen' || layer.tool === 'eraser') && (
                 <Line
                   key={i}
-                  id={i}
+                  id={i.toString()}
                   points={layer.points}
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
@@ -82,7 +112,7 @@ var App = () => {
               {layer.tool === 'square' && (
                 <Rect
                   key={i}
-                  id={i}
+                  id={i.toString()}
                   x={layer.points.x}
                   y={layer.points.y}
                   width={layer.points.p - layer.points.x}
@@ -96,7 +126,7 @@ var App = () => {
               {layer.tool === 'triangle' && (
                 <Line
                   key={i}
-                  id={i}
+                  id={i.toString()}
                   x={layer.points.x1}
                   y={layer.points.y1}
                   points={[
@@ -111,13 +141,14 @@ var App = () => {
                   closed
                   stroke={layer.strokeColor}
                   strokeWidth={layer.strokeWidth}
+                  draggable={selectedTool === 'drag'}
                 />
               )}
               {layer.tool === 'circle' && (
                 <>
                   <Circle
                     key={i}
-                    id={i}
+                    id={i.toString()}
                     x={
                       layer.points.p +
                       Math.min(
@@ -142,6 +173,7 @@ var App = () => {
                     }
                     stroke={layer.strokeColor}
                     strokeWidth={layer.strokeWidth}
+                    draggable={selectedTool === 'drag'}
                   />
                 </>
               )}
