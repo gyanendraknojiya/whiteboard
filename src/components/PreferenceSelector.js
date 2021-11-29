@@ -38,7 +38,7 @@ const PreferenceSelector = () => {
 
   window.ondragstart = () => false;
   return (
-    <div className="fixed bottom-5  right-2 md:right-5 z-50  select-none ">
+    <div className="fixed bottom-5  left-2 md:left-5 z-50  select-none ">
       <div className="border border-black dark:border-white flex gap-x-3 shadow-inner bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100 py-2 px-5 rounded-lg">
         <span title="Stroke Color" className="relative">
           <input

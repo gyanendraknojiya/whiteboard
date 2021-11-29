@@ -10,6 +10,7 @@ import {
 } from './lib/boardEventHandlers';
 import { useSelector, useDispatch } from 'react-redux';
 import PreferenceSelector from './components/PreferenceSelector';
+import Credit from './components/Credit';
 
 var App = () => {
   const isDrawing = useRef(false);
@@ -156,6 +157,7 @@ var App = () => {
       <Header stageRef={stageRef} />
       <Toolbar />
       <PreferenceSelector />
+      <Credit />
     </div>
   );
 };
